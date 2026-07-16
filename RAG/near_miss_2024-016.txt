@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2024-016
+Zone: B1-Z02
+Oven: B1-O16
+Date/Time: 15/03/2024, approx. 10:10 hrs (Shift B)
+
+Unusual vibration on the B1-Z02 exhauster motor was noted by a technician during routine rounds and logged as a maintenance flag. No fault had yet occurred and no permits were active in the zone. The item was scheduled for attention ahead of the next planned maintenance window rather than awaiting a formal fault condition.
+
+Resolution / Corrective action: Motor bearing inspected and adjusted before any fault occurred; no impact on operations.

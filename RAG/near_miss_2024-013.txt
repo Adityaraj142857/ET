@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2024-013
+Zone: B1-Z05
+Oven: B1-O48
+Date/Time: 14/01/2024, approx. 17:30 hrs (Shift C)
+
+An exhauster fault triggered a zone-wide caution alert covering B1-Z05. A hot work permit active at a neighbouring oven in the same zone was proactively suspended as a precaution, although gas readings at that oven remained normal throughout. The suspension followed the site's zone-level response guidance for exhauster faults rather than any reading at the permitted oven itself.
+
+Resolution / Corrective action: Permit reinstated once the exhauster fault cleared and a fresh gas test confirmed normal conditions.

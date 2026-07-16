@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2023-003
+Zone: B1-Z03
+Oven: B1-O22
+Date/Time: 22/02/2023, approx. 14:10 hrs (Shift B)
+
+An exhauster fault on the B1-Z03 zone exhauster was identified by the area attendant during a routine round, before any associated rise in gas readings was observed at B1-O22 or neighbouring ovens. No hot work or confined space permits were active in the zone at the time. Maintenance was notified and attended within thirty-five minutes.
+
+Resolution / Corrective action: Exhauster fault cleared same shift; no permits were affected. Logged as a preventive catch under routine rounds.

@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2023-012
+Zone: B1-Z04
+Oven: B1-O37
+Date/Time: 26/07/2023, approx. 12:15 hrs (Shift B)
+
+A confined space entry at B1-O37 proceeded with continuous gas monitoring as required. A brief fluctuation in the combustible gas reading occurred partway through the entry but remained within acceptable limits throughout, and the entry was completed without interruption. The fluctuation was noted in the permit log for the record.
+
+Resolution / Corrective action: No corrective action required; monitoring and logging performed as intended.

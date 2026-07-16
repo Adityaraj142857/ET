@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2023-002
+Zone: B1-Z02
+Oven: B1-O14
+Date/Time: 03/02/2023, approx. 22:05 hrs (Shift C)
+
+A confined space entry permit for B1-O14 was authorised by the shift supervisor without a gas reading logged within the two hours preceding entry, as required by the permit checklist. The entry crew independently tested the atmosphere before entering and found readings within normal limits, so no exposure occurred. The gap was identified during the next-day permit audit rather than at the time of entry.
+
+Resolution / Corrective action: Permit issuer briefed on the pre-entry gas-check logging requirement; audit frequency for confined space permits increased for one month.

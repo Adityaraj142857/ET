@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2023-010
+Zone: B1-Z03
+Oven: B1-O26
+Date/Time: 21/06/2023, approx. 04:20 hrs (Shift C)
+
+An exhauster fault and an open maintenance flag were both recorded for the B1-Z03 zone on the same shift. No hot work or confined space permit was open in the zone at the time. As a precaution, access to the zone was restricted to essential personnel until both items were cleared, even though the full compound-risk condition had not been met.
+
+Resolution / Corrective action: Maintenance flag closed and exhauster fault cleared within the same shift; zone access restriction lifted afterward.

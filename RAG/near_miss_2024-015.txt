@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2024-015
+Zone: B1-Z07
+Oven: B1-O66
+Date/Time: 27/02/2024, approx. 20:40 hrs (Shift C)
+
+A high-temperature alarm at B1-O66 was initially treated as a possible indicator of a gas-related event given its proximity to the oven's gas offtake. Gas readings at the location remained normal throughout, and subsequent checks attributed the alarm to a faulty temperature sensor rather than any process condition. No permits were active at the time.
+
+Resolution / Corrective action: Sensor replaced and alarm cleared; no gas excursion confirmed by cross-check with handheld meter.

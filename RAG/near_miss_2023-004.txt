@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2023-004
+Zone: B1-Z01
+Oven: B1-O07
+Date/Time: 09/03/2023, approx. 11:40 hrs (Shift A)
+
+The fixed CO monitor at B1-O07 registered a short spike that triggered a local alarm. A handheld gas meter check by the area technician showed normal readings at the same location and time, indicating the fixed sensor reading was not representative of actual conditions. No permit was active and no work was interrupted beyond the routine check.
+
+Resolution / Corrective action: Sensor flagged for recalibration and inspected by instrumentation the same day; drift confirmed as the cause.

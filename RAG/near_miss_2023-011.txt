@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2023-011
+Zone: B1-Z01
+Oven: B1-O09
+Date/Time: 08/07/2023, approx. 06:50 hrs (Shift A)
+
+A hot work permit for B1-O09 was signed off using a gas reading taken approximately three hours earlier rather than a current one. The discrepancy was noticed by the crew during the pre-job toolbox talk, before any hot work had started. A fresh gas test was requested at that point.
+
+Resolution / Corrective action: Permit revoked and reissued against a current gas reading; incident referenced in the next permit-issuer refresher briefing.

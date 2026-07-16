@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2024-017
+Zone: B1-Z03
+Oven: B1-O29
+Date/Time: 04/04/2024, approx. 05:55 hrs (Shift A)
+
+During a permitted confined space entry at B1-O29, combustible gas readings briefly exceeded the 5% LEL confined-space threshold, attributed afterward to a residual gas pocket disturbed during entry. The entry team withdrew immediately per procedure and the space was purged and re-tested. No injuries or exposure symptoms were reported.
+
+Resolution / Corrective action: Space re-tested clear after purging; entry resumed under continued monitoring. Cited as correct emergency withdrawal response.

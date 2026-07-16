@@ -1,0 +1,256 @@
+# Compound Risk Detection Engine — Coke Oven Battery
+
+ET AI Hackathon 2026. Full background, fact-checking, and the original spec
+live in [`coke_oven_risk_project_context.md`](coke_oven_risk_project_context.md)
+— read that first for the "why." This README covers what's actually built
+and how to run it.
+
+**Status: Phases 1-5 built.** Synthetic data generator, rule-based detection
+engine + optional ML stretch, evaluation, a 3D interactive geospatial
+heatmap, and the dashboard assembly around it (risk engine output + 3D scene
++ plain-language "why flagged" panel + time-scrubber playback — Phase 5 was
+effectively delivered by Phase 4's build). Phases 6-7 (roadmap slides, deck
+fact-check) are presentation artifacts, not code, and aren't built here.
+
+---
+
+## How to run it
+
+The project has two halves that run separately: a **Python pipeline** (generates
+synthetic data, runs the detection engine, evaluates it) and a **React/Three.js
+dashboard** (visualizes the pipeline's output in 3D). You need to run the
+Python side at least once before the dashboard has anything to show.
+
+### Prerequisites
+
+- **Python 3.11+** and [**uv**](https://docs.astral.sh/uv/) (dependency
+  management — no manual `pip install`/venv needed, `uv` handles it)
+- **Node.js 18+** and **npm** (for the frontend)
+
+Check what you have:
+
+```bash
+uv --version
+node --version
+```
+
+### 1. Run the Python pipeline
+
+From the repo root:
+
+```bash
+uv run python main.py
+```
+
+First run will also install Python dependencies automatically (`uv` reads
+`pyproject.toml`). This single command:
+
+1. Generates 60 hours of synthetic sensor + permit data for 67 ovens (seeded,
+   deterministic — same output every run)
+2. Runs the rule-based compound-risk engine over it
+3. Evaluates the engine against 14 hand-labeled ground-truth scenarios and
+   prints a pass/fail report
+4. Trains the optional gradient-boosting stretch layer and prints its metrics
+5. Writes every CSV to `data/` **and** writes `frontend/public/data/scene.json`
+   for the 3D dashboard
+
+You should see output ending in something like:
+
+```
+Injected compound-risk windows caught: 8/8 (recall = 100%)
+Confounder windows correctly left quiet: 6/6 (quiet rate = 100%)
+...
+Result: ALL WINDOWS CORRECT
+...
+Wrote frontend scene data to .../frontend/public/data/scene.json (2.8 MB).
+```
+
+To run the test suite instead:
+
+```bash
+uv run pytest -v      # 36 unit + integration tests
+```
+
+### 2. Run the 3D dashboard
+
+```bash
+cd frontend
+npm install            # first time only
+npm run dev
+```
+
+Open the URL it prints (default **http://localhost:5173**). You should see a
+dark 3D scene: a row of 67 oven blocks, orbit/pan/zoom with the mouse, a
+legend and time-scrubber along the bottom, and a detail panel that fills in
+when you click an oven.
+
+**If the dashboard shows a "Couldn't load scene data" error**, it means you
+haven't run the Python pipeline yet (or ran it from the wrong place) — go
+back to step 1. The dashboard reads `frontend/public/data/scene.json`, which
+only `uv run python main.py` generates; it's gitignored, so it won't exist
+on a fresh clone until you run the pipeline.
+
+**Whenever you change** `compoundrisk/scenarios.py`, `constants.py`, or
+anything else that affects the simulation: re-run `uv run python main.py`,
+then just refresh the browser tab (no need to restart `npm run dev`).
+
+### Using the dashboard
+
+- **Drag** to orbit the camera, **scroll** to zoom, **right-click drag** to pan
+- **Click an oven block** to open its detail panel (readings, active permits,
+  sparklines, the plain-language risk reason)
+- **Click empty space** to deselect
+- **Play/pause** button + **1x/4x/16x** speed control at the bottom advance
+  the 60-hour simulated window; oven colors update live
+- Small red ticks appear on the time-scrubber track as the simulation passes
+  a "high" (compound risk) event — an alarm-history log, not a spoiler (it
+  only marks events already reached, never a future one)
+- Green / amber / red = low / medium / high risk category, always shown with
+  a glyph (● / ▲ / ✖) too, never color alone
+
+### Production build (optional)
+
+```bash
+cd frontend
+npm run build      # type-checks + bundles to frontend/dist/
+npm run preview    # serves that production build locally
+```
+
+---
+
+## Core rule (do not let this drift)
+
+Compound risk is flagged on an oven when, at the same timestamp:
+
+1. **Gas concentration exceeds threshold** — CO > 50 ppm OR combustible gas > 5% LEL
+2. **AND** an **active** `hot_work` or `confined_space_entry` permit covers that oven
+3. **AND** a maintenance flag is active **OR** the exhauster is in `fault` status
+
+Any two of the three is explicitly *not* enough — that's the entire point of
+a "compound" risk engine over single-sensor alerting. See
+`compoundrisk/scenarios.py` for the 6 confounder scenarios that prove it.
+
+## Output files
+
+Everything under `data/` is gitignored and regenerated by `main.py` (seeded,
+deterministic):
+
+| file | what it is |
+|---|---|
+| `oven_registry.csv` | Section 4.1 — static 67-oven registry, Battery 1 |
+| `zone_layout.csv` | Section 4.4 — static zone/layout table |
+| `sensor_readings.csv` | Section 4.2 — 48,240 rows: 67 ovens × 720 timestamps (60h @ 5min) |
+| `permit_log.csv` | Section 4.3 — hot_work/confined_space_entry/cold_work permits |
+| `ground_truth_windows.csv` | 14 labeled scenarios (8 positive + 6 confounder), evaluation-only |
+| `risk_engine_output.csv` | Section 4.5 — rule engine's per-row risk_score/flag/reason |
+| `evaluation_per_window.csv` / `evaluation_report.txt` | Phase 3 grading of the engine against ground truth |
+| `ml_enhanced_risk_output.csv` | optional gradient-boosting stretch layer's continuous score |
+| `frontend/public/data/scene.json` | compact payload consumed by the React dashboard |
+
+## Package layout
+
+```
+compoundrisk/
+  constants.py       fact-checked plant constants + alert thresholds (Section 2 & 3)
+  schemas.py          enums for the four data tables (Section 4)
+  registry.py         Oven Registry + Zone/Layout (static tables)
+  scenarios.py        the 14 hand-authored ground-truth risk windows — read this
+                       top-to-bottom to see exactly what "should" happen and why
+  simulate.py         Phase 1 — turns scenarios.py into noisy sensor/permit data
+  rule_engine.py      Phase 2 — the Section 3 rule, implemented exactly
+  ml_engine.py        Phase 2 optional stretch — gradient boosting continuous score
+  evaluate.py         Phase 3 — grades compound_risk_flag against ground truth
+  export_frontend.py  Phase 4 bridge — compact JSON payload for the React scene
+  pipeline.py         wires it all together, writes data/*.csv + frontend/public/data/scene.json
+
+tests/                36 pytest tests: rule-engine boundary conditions, registry,
+                       end-to-end integration, ML-engine guard clauses
+
+frontend/              Phase 4/5 — Vite + React + TypeScript + react-three-fiber
+  public/data/scene.json   generated by export_frontend.py (gitignored)
+  src/
+    types.ts               mirrors export_frontend.py's JSON shape — keep in lockstep
+    store/simulationStore.ts  zustand: loaded data, current step, playback, selected oven
+    utils/color.ts            status palette (good/warning/critical) — see below
+    utils/time.ts, permits.ts step <-> timestamp math, client-side permit lookup
+    components/
+      Scene.tsx                Canvas, camera, lights, OrbitControls
+      OvenBlock.tsx             one oven block: color, pulse, glyph, click-to-select
+      Zones.tsx                 zone outlines + coal-chem-plant/exhauster-house landmarks
+      DetailPanel.tsx           click-through detail: readings, permits, sparklines, reason
+      TimeScrubber.tsx          play/pause, speed, slider, alarm-history ticks
+      Legend.tsx, Header.tsx    status legend, synthetic-data disclosure banner
+```
+
+## Why gradient boosting, not logistic regression, for the ML stretch
+
+The Section 3 rule is a three-way AND (gas AND permit AND maintenance-or-fault).
+A linear model sums independent feature contributions, so it can't represent an
+AND-shaped decision boundary from raw 0/1 features without hand-built
+interaction terms — two-of-three-present would score almost as high as
+three-of-three. Tree ensembles split on thresholds and capture that
+interaction natively, which is the entire point of a compound-risk model.
+
+## Key design choices worth knowing
+
+- **Baseline gas readings are hard-clipped below the alert thresholds**
+  (CO ≤ 35 ppm, LEL ≤ 3.5%) everywhere except inside a deliberately injected
+  `scenarios.WINDOWS` spike. That's what makes "the engine stays quiet during
+  normal operation" a structural guarantee instead of a probabilistic hope —
+  verified by `tests/test_integration.py::test_baseline_gas_readings_never_cross_threshold_outside_labeled_windows`.
+- **Ovens are staggered round-robin** through their 16-19h coking cycles
+  (via a per-oven phase offset), matching how a real battery sequences
+  pushes across ovens rather than charging all 67 in lockstep.
+- **Exhauster faults are zone-wide** (~10 ovens share one exhauster house),
+  not per-oven — a fault in one zone can appear on sensor rows for ovens
+  that have no gas spike or permit of their own, which is intentional and
+  realistic, not a bug.
+- All numeric plant constants and thresholds in `constants.py` trace back to
+  the fact-checked figures in `coke_oven_risk_project_context.md` Sections
+  2-3. Don't hand-edit a threshold without checking that doc first.
+
+## Phase 4/5 design decisions worth knowing
+
+- **Ovens are colored by `risk_category`, not by interpolating `risk_score`.**
+  A continuous green→red gradient over the score would visually blur "two
+  factors maxed out" (score ~0.75) into nearly the same hue as "three
+  factors, barely over threshold" (score ~0.83) — reintroducing, at the
+  pixel level, the exact two-of-three-looks-like-compound bug that was
+  fixed in the rule engine's category logic (see `rule_engine.py`). Status
+  colors are fixed/discrete (`utils/color.ts`) and always paired with a
+  glyph + text label, never color alone.
+- **Ground truth is never sent to the frontend.** `export_frontend.py`
+  deliberately excludes `compoundrisk.scenarios` — a real safety tool has no
+  oracle telling it which readings are "supposed" to be risky, so surfacing
+  that in the operator UI would misrepresent what the tool actually does.
+  The one derived, non-oracle exception is the time-scrubber's alarm-history
+  ticks, which only show *already-reached* high-risk steps (`i <= currentStep`),
+  like a real alarm log — never a preview of a future alert.
+- **A persistent "SYNTHETIC DATA — NOT LIVE SCADA" banner** is always visible
+  in the header, per the project's explicit ethical/scope requirement
+  (Section 7) that this never be mistakable for a live monitoring feed.
+- **Individual oven positions and zone centers share one formula**
+  (`registry.oven_x_position`) so the 3D scene's ovens and zone outlines can
+  never drift apart from each other or from the backend's own layout math.
+- **No individual worker GPS tracking** — not built at all, per the
+  project's explicit ethical boundary (Section 6); zone-level occupancy was
+  optional and is left as roadmap, not implemented.
+
+## Not built (see context doc for the full roadmap)
+
+Phase 6 (roadmap slides: RAG incident-pattern agent, permit-conflict agent,
+emergency response orchestrator, compliance audit agent) and Phase 7 (deck
+fact-check pass) are presentation-deck artifacts, not software, and are out
+of scope for this build.
+
+## Troubleshooting
+
+- **`uv: command not found`** — install uv: `curl -LsSf https://astral.sh/uv/install.sh | sh` (see [docs.astral.sh/uv](https://docs.astral.sh/uv/getting-started/installation/))
+- **Frontend shows a blank dark screen, no error** — open the browser
+  console; if you see a fetch/parse error for `scene.json`, re-run
+  `uv run python main.py` from the repo root and refresh
+- **`npm install` fails on a fresh machine** — confirm `node --version` is
+  18 or newer; the 3D stack (`three`, `@react-three/fiber`) needs a
+  reasonably current Node
+- **Port 5173 already in use** — Vite will automatically try the next free
+  port and print the URL it actually picked; use that one

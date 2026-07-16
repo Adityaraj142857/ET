@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2023-007
+Zone: B1-Z06
+Oven: B1-O55
+Date/Time: 05/05/2023, approx. 10:30 hrs (Shift B)
+
+A worn gasket was identified near the larry car track adjacent to B1-O55 during a scheduled mechanical inspection. No gas or permit-related conditions were involved. The item was raised as a maintenance flag for repair ahead of the next charging cycle rather than left for reactive maintenance.
+
+Resolution / Corrective action: Gasket replaced during the following planned maintenance window; no operational impact.

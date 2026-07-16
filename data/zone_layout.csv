@@ -1,0 +1,10 @@
+zone_id,x,y,z,zone_type
+B1-Z01,27.5,0.0,0.0,oven_battery
+B1-Z02,77.5,0.0,0.0,oven_battery
+B1-Z03,127.5,0.0,0.0,oven_battery
+B1-Z04,177.5,0.0,0.0,oven_battery
+B1-Z05,227.5,0.0,0.0,oven_battery
+B1-Z06,277.5,0.0,0.0,oven_battery
+B1-Z07,320.0,0.0,0.0,oven_battery
+COAL-CHEM-PLANT,167.5,40.0,0.0,coal_chemical_plant
+EXHAUSTER-HOUSE,355.0,0.0,0.0,exhauster_house

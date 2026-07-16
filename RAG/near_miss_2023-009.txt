@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2023-009
+Zone: B1-Z02
+Oven: B1-O18
+Date/Time: 02/06/2023, approx. 15:45 hrs (Shift B)
+
+A CO alarm activated at B1-O18 while a hot work permit was active for pipework repair. The area was evacuated and work stopped immediately in line with procedure. Investigation traced the reading to a valve packing leak on an adjacent line, which was isolated. No injuries were reported.
+
+Resolution / Corrective action: Permit suspended pending isolation of the leak; valve packing replaced and area retested clear before work resumed.

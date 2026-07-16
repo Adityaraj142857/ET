@@ -1,0 +1,53 @@
+========================================================================
+PHASE 3 EVALUATION — Compound Risk Detection Engine (rule-based)
+========================================================================
+
+Injected compound-risk windows caught: 8/8 (recall = 100%)
+Confounder windows correctly left quiet: 6/6 (quiet rate = 100%)
+
+Per-timestamp confusion matrix (every oven x every 5-min sample):
+  TP=70  FP=0  FN=26  TN=48144
+  precision=1.000  recall=0.729  f1=0.843
+
+CO alert threshold: 50 ppm | LEL alert threshold: 5%
+
+Per-window detail:
+  [PASS] W01 (B1-O05, compound) — should flag, engine flagged | in-window flag rate: 75%
+         CO spike + active hot_work permit + maintenance flag
+  [PASS] W02 (B1-O12, compound) — should flag, engine flagged | in-window flag rate: 75%
+         LEL spike + active confined_space_entry permit + exhauster fault
+  [PASS] W03 (B1-O20, compound) — should flag, engine flagged | in-window flag rate: 75%
+         CO+LEL spike + active hot_work permit + maintenance flag
+  [PASS] W04 (B1-O28, compound) — should flag, engine flagged | in-window flag rate: 75%
+         CO spike + active confined_space_entry permit + exhauster fault
+  [PASS] W05 (B1-O35, compound) — should flag, engine flagged | in-window flag rate: 75%
+         LEL spike + active hot_work permit + maintenance flag
+  [PASS] W06 (B1-O44, compound) — should flag, engine flagged | in-window flag rate: 58%
+         CO spike + active confined_space_entry permit + maintenance flag
+  [PASS] W07 (B1-O52, compound) — should flag, engine flagged | in-window flag rate: 75%
+         CO+LEL spike + active hot_work permit + exhauster fault
+  [PASS] W08 (B1-O60, compound) — should flag, engine flagged | in-window flag rate: 75%
+         LEL spike + active confined_space_entry permit + exhauster fault
+  [PASS] C01 (B1-O08, confounder) — should stay quiet, engine quiet | in-window flag rate: 0%
+         Gas spike ONLY — no permit, no maintenance/exhauster fault
+  [PASS] C02 (B1-O15, confounder) — should stay quiet, engine quiet | in-window flag rate: 0%
+         Active hot_work permit + maintenance flag, but gas stays at baseline
+  [PASS] C03 (B1-O23, confounder) — should stay quiet, engine quiet | in-window flag rate: 0%
+         Exhauster fault ONLY (zone-wide) — no gas spike, no permit
+  [PASS] C04 (B1-O31, confounder) — should stay quiet, engine quiet | in-window flag rate: 0%
+         CO spike + active hot_work permit, but NO maintenance flag / exhauster fault — proves two-of-three is not enough
+  [PASS] C05 (B1-O38, confounder) — should stay quiet, engine quiet | in-window flag rate: 0%
+         CO spike + maintenance flag, but the on-file permit is cold_work (wrong type)
+  [PASS] C06 (B1-O46, confounder) — should stay quiet, engine quiet | in-window flag rate: 0%
+         CO spike + maintenance flag + hot_work permit on file, but its status is 'closed' — proves the engine checks permit status, not just time bounds
+
+Result: ALL WINDOWS CORRECT
+========================================================================
+
+------------------------------------------------------------------------
+OPTIONAL STRETCH — Gradient boosting ml_risk_score (enhancement, not a replacement)
+------------------------------------------------------------------------
+Train window: 33768 rows (72 ground-truth positive)
+Test window:  14472 rows (24 ground-truth positive)
+Test precision=1.000  recall=1.000  f1=1.000  roc_auc=1.000
+------------------------------------------------------------------------

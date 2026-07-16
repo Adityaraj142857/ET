@@ -1,0 +1,15 @@
+window_id,oven_id,kind,should_flag,detected,in_window_flag_rate,correct,description
+W01,B1-O05,compound,True,True,0.75,True,CO spike + active hot_work permit + maintenance flag
+W02,B1-O12,compound,True,True,0.75,True,LEL spike + active confined_space_entry permit + exhauster fault
+W03,B1-O20,compound,True,True,0.75,True,CO+LEL spike + active hot_work permit + maintenance flag
+W04,B1-O28,compound,True,True,0.75,True,CO spike + active confined_space_entry permit + exhauster fault
+W05,B1-O35,compound,True,True,0.75,True,LEL spike + active hot_work permit + maintenance flag
+W06,B1-O44,compound,True,True,0.5833333333333334,True,CO spike + active confined_space_entry permit + maintenance flag
+W07,B1-O52,compound,True,True,0.75,True,CO+LEL spike + active hot_work permit + exhauster fault
+W08,B1-O60,compound,True,True,0.75,True,LEL spike + active confined_space_entry permit + exhauster fault
+C01,B1-O08,confounder,False,False,0.0,True,"Gas spike ONLY — no permit, no maintenance/exhauster fault"
+C02,B1-O15,confounder,False,False,0.0,True,"Active hot_work permit + maintenance flag, but gas stays at baseline"
+C03,B1-O23,confounder,False,False,0.0,True,"Exhauster fault ONLY (zone-wide) — no gas spike, no permit"
+C04,B1-O31,confounder,False,False,0.0,True,"CO spike + active hot_work permit, but NO maintenance flag / exhauster fault — proves two-of-three is not enough"
+C05,B1-O38,confounder,False,False,0.0,True,"CO spike + maintenance flag, but the on-file permit is cold_work (wrong type)"
+C06,B1-O46,confounder,False,False,0.0,True,"CO spike + maintenance flag + hot_work permit on file, but its status is 'closed' — proves the engine checks permit status, not just time bounds"

@@ -1,0 +1,28 @@
+[project]
+name = "compoundriskdetection"
+version = "0.1.0"
+description = "Compound Risk Detection Engine for a coke oven battery — ET AI Hackathon 2026"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=2.4.6",
+    "pandas>=3.0.3",
+    "scikit-learn>=1.9.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+rag = [
+    "pdfplumber>=0.11",
+    "sentence-transformers>=3.0",
+    "faiss-cpu>=1.8",
+    "httpx>=0.27",
+    "anthropic>=0.40",
+    "fastapi>=0.115",
+    "uvicorn>=0.32",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

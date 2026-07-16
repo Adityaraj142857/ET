@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2024-014
+Zone: B1-Z06
+Oven: B1-O58
+Date/Time: 09/02/2024, approx. 08:05 hrs (Shift A)
+
+A contractor began hot work at B1-O58 shortly after the validity window on the associated permit had lapsed, apparently having checked the issue date but not the expiry time. The area supervisor identified the expired permit within minutes of work starting and stopped the job. Gas conditions at the time were within normal limits.
+
+Resolution / Corrective action: Work stopped and a new permit issued against a current gas test before work resumed; contractor briefed on permit validity checks.

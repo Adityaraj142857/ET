@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2024-018
+Zone: B1-Z07
+Oven: B1-O61
+Date/Time: 21/04/2024, approx. 18:25 hrs (Shift B)
+
+An exhauster fault occurred in B1-Z07 while two permits were concurrently open in the zone: a hot work permit at B1-O61 and a cold work permit at a nearby oven. Both permit holders were instructed to stand down as a precaution until the fault was cleared and gas levels were reconfirmed normal at both locations. Neither location showed elevated gas readings at any point.
+
+Resolution / Corrective action: Both permits reinstated after the exhauster fault cleared and fresh gas tests confirmed normal conditions at each oven.

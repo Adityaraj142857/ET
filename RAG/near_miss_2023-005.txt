@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2023-005
+Zone: B1-Z04
+Oven: B1-O33
+Date/Time: 30/03/2023, approx. 16:50 hrs (Shift B)
+
+A hot work permit was active at B1-O33 when an exhauster fault was reported on the same zone exhauster. Gas readings at the oven remained within normal limits throughout the fault. Given two of the three compound-risk conditions were present without a gas excursion, the permit holder was instructed to increase monitoring frequency rather than stop work outright, per standard guidance.
+
+Resolution / Corrective action: Exhauster fault cleared before permit expiry; permit closed on schedule with no further action required.

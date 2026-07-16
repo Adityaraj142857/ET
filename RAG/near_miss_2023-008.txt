@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2023-008
+Zone: B1-Z07
+Oven: B1-O63
+Date/Time: 19/05/2023, approx. 13:00 hrs (Shift C)
+
+A cold work permit had been issued for gasket replacement work at B1-O63 that, on review during the pre-job safety walkthrough, was found to require brief use of a grinder. The area safety officer identified the mismatch before work began and paused the job. No cutting, grinding, or other hot work had yet started at the time of the review.
+
+Resolution / Corrective action: Permit reclassified to hot work and reissued with the correct gas-test requirements before work resumed.

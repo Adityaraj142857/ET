@@ -1,0 +1,15 @@
+window_id,oven_id,start_time,end_time,kind,should_flag,description
+W01,B1-O05,2026-01-15 12:00:00,2026-01-15 13:00:00,compound,True,CO spike + active hot_work permit + maintenance flag
+W02,B1-O12,2026-01-15 20:00:00,2026-01-15 21:00:00,compound,True,LEL spike + active confined_space_entry permit + exhauster fault
+W03,B1-O20,2026-01-16 02:00:00,2026-01-16 03:00:00,compound,True,CO+LEL spike + active hot_work permit + maintenance flag
+W04,B1-O28,2026-01-16 09:00:00,2026-01-16 10:00:00,compound,True,CO spike + active confined_space_entry permit + exhauster fault
+W05,B1-O35,2026-01-16 15:00:00,2026-01-16 16:00:00,compound,True,LEL spike + active hot_work permit + maintenance flag
+W06,B1-O44,2026-01-16 22:00:00,2026-01-16 23:00:00,compound,True,CO spike + active confined_space_entry permit + maintenance flag
+W07,B1-O52,2026-01-17 05:00:00,2026-01-17 06:00:00,compound,True,CO+LEL spike + active hot_work permit + exhauster fault
+W08,B1-O60,2026-01-17 11:00:00,2026-01-17 12:00:00,compound,True,LEL spike + active confined_space_entry permit + exhauster fault
+C01,B1-O08,2026-01-15 15:00:00,2026-01-15 16:00:00,confounder,False,"Gas spike ONLY — no permit, no maintenance/exhauster fault"
+C02,B1-O15,2026-01-15 23:00:00,2026-01-16 00:00:00,confounder,False,"Active hot_work permit + maintenance flag, but gas stays at baseline"
+C03,B1-O23,2026-01-16 05:00:00,2026-01-16 06:00:00,confounder,False,"Exhauster fault ONLY (zone-wide) — no gas spike, no permit"
+C04,B1-O31,2026-01-16 12:00:00,2026-01-16 13:00:00,confounder,False,"CO spike + active hot_work permit, but NO maintenance flag / exhauster fault — proves two-of-three is not enough"
+C05,B1-O38,2026-01-16 18:00:00,2026-01-16 19:00:00,confounder,False,"CO spike + maintenance flag, but the on-file permit is cold_work (wrong type)"
+C06,B1-O46,2026-01-17 01:00:00,2026-01-17 02:00:00,confounder,False,"CO spike + maintenance flag + hot_work permit on file, but its status is 'closed' — proves the engine checks permit status, not just time bounds"

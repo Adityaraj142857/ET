@@ -1,0 +1,14 @@
+SYNTHETIC NEAR-MISS REPORT - NOT A REAL INCIDENT
+This record is a fabricated training/demo example prepared for the Compound
+Risk Detection project. It does not describe any real event, plant,
+company, or individual, and must not be treated as an actual incident
+record.
+
+Report ID: NM-2023-001
+Zone: B1-Z01
+Oven: B1-O03
+Date/Time: 18/01/2023, approx. 09:20 hrs (Shift A)
+
+During grinding work under an active hot work permit at B1-O03, the area CO monitor briefly registered a reading above the 50 ppm alert threshold. The permit holder stopped work immediately and the area was cleared as a precaution. Follow-up monitoring showed CO levels back within normal range within four minutes, consistent with a brief puff from a nearby charging operation rather than a sustained leak. No injuries occurred and no equipment was damaged.
+
+Resolution / Corrective action: Work resumed after two consecutive clear readings; ventilation fan positioning adjusted for future permits in this bay.

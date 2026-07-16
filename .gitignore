@@ -1,0 +1,26 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Generated synthetic data / reports (regenerate with `uv run main.py`)
+# data/*.csv
+# data/evaluation_report.txt
+.pytest_cache/
+
+# Frontend (Phase 4/5)
+frontend/node_modules/
+frontend/dist/
+frontend/public/data/*.json
+
+# RAG pipeline index (regenerate with `uv run python -m rag_pipeline.build_index`)
+rag_pipeline/index/
+
+# OS cruft
+# .DS_Store
