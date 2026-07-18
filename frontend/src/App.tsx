@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useSceneData } from "./hooks/useSceneData";
 import { useSimulationStore } from "./store/simulationStore";
 import { Header } from "./components/Header";
@@ -9,33 +8,32 @@ import { TimeScrubber } from "./components/TimeScrubber";
 import { Legend } from "./components/Legend";
 import { SafetyIntelligence } from "./components/SafetyIntelligence";
 
-type Tab = "dashboard" | "safety-intel";
-
 export default function App() {
   useSceneData();
   const loading = useSimulationStore((s) => s.loading);
   const error = useSimulationStore((s) => s.error);
-  const [tab, setTab] = useState<Tab>("dashboard");
+  const tab = useSimulationStore((s) => s.activeTab);
+  const setActiveTab = useSimulationStore((s) => s.setActiveTab);
 
   return (
     <div className="app">
       <Header />
       <nav className="app-tabs">
         <button
-          className={`app-tabs__tab ${tab === "dashboard" ? "app-tabs__tab--active" : ""}`}
-          onClick={() => setTab("dashboard")}
+          className={`app-tabs__tab ${tab === "simulation" ? "app-tabs__tab--active" : ""}`}
+          onClick={() => setActiveTab("simulation")}
         >
-          3D Dashboard
+          Live Simulation
         </button>
         <button
-          className={`app-tabs__tab ${tab === "safety-intel" ? "app-tabs__tab--active" : ""}`}
-          onClick={() => setTab("safety-intel")}
+          className={`app-tabs__tab ${tab === "assistant" ? "app-tabs__tab--active" : ""}`}
+          onClick={() => setActiveTab("assistant")}
         >
-          Safety Intelligence
+          Safety Intelligence Assistant
         </button>
       </nav>
 
-      {tab === "dashboard" ? (
+      {tab === "simulation" ? (
         <>
           <div className="app__body">
             <div className="scene-container">

@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import type { ScenePayload } from "../types";
 
+export type AppTab = "simulation" | "assistant";
+
 interface SimulationState {
   data: ScenePayload | null;
   loading: boolean;
@@ -12,6 +14,12 @@ interface SimulationState {
 
   selectedOvenId: string | null;
 
+  // Cross-panel navigation: which top-level tab is active, and a query
+  // string handed off from the simulation panel to pre-fill (not submit)
+  // in the Safety Intelligence Assistant's chat input.
+  activeTab: AppTab;
+  pendingAssistantQuery: string | null;
+
   setData: (data: ScenePayload) => void;
   setLoadError: (message: string) => void;
 
@@ -22,6 +30,10 @@ interface SimulationState {
   setSpeed: (stepsPerTick: number) => void;
 
   selectOven: (ovenId: string | null) => void;
+
+  setActiveTab: (tab: AppTab) => void;
+  askAssistantAbout: (query: string) => void;
+  clearPendingAssistantQuery: () => void;
 }
 
 export const useSimulationStore = create<SimulationState>((set, get) => ({
@@ -34,6 +46,9 @@ export const useSimulationStore = create<SimulationState>((set, get) => ({
   speedStepsPerTick: 4, // matches the default-highlighted "4x" button in TimeScrubber
 
   selectedOvenId: null,
+
+  activeTab: "simulation",
+  pendingAssistantQuery: null,
 
   setData: (data) => set({ data, loading: false, error: null }),
   setLoadError: (message) => set({ error: message, loading: false }),
@@ -59,4 +74,8 @@ export const useSimulationStore = create<SimulationState>((set, get) => ({
   setSpeed: (speedStepsPerTick) => set({ speedStepsPerTick }),
 
   selectOven: (ovenId) => set({ selectedOvenId: ovenId }),
+
+  setActiveTab: (tab) => set({ activeTab: tab }),
+  askAssistantAbout: (query) => set({ activeTab: "assistant", pendingAssistantQuery: query }),
+  clearPendingAssistantQuery: () => set({ pendingAssistantQuery: null }),
 }));

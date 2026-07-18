@@ -3,6 +3,7 @@ import { useSimulationStore } from "../store/simulationStore";
 import { colorForCategory, RISK_CATEGORY_NAME, STATUS_GLYPH, STATUS_LABEL } from "../utils/color";
 import { activePermitsForOven, allPermitsForOven } from "../utils/permits";
 import { dateForStep } from "../utils/time";
+import { assistantQueryFromRiskReason } from "../utils/assistantQuery";
 import { Sparkline } from "./Sparkline";
 
 const TRAILING_HOURS = 6;
@@ -11,6 +12,7 @@ export function DetailPanel() {
   const data = useSimulationStore((s) => s.data);
   const currentStep = useSimulationStore((s) => s.currentStep);
   const selectedOvenId = useSimulationStore((s) => s.selectedOvenId);
+  const askAssistantAbout = useSimulationStore((s) => s.askAssistantAbout);
 
   const trailingSteps = data ? Math.round((TRAILING_HOURS * 60) / data.meta.interval_min) : 0;
 
@@ -68,6 +70,14 @@ export function DetailPanel() {
       </div>
 
       <p className="detail-panel__reason">{reason}</p>
+
+      <button
+        type="button"
+        className="detail-panel__ask-assistant"
+        onClick={() => askAssistantAbout(assistantQueryFromRiskReason(oven.oven_id, reason))}
+      >
+        Ask Safety Assistant about this pattern →
+      </button>
 
       <dl className="metric-grid">
         <MetricRow label="CO" value={`${co.toFixed(1)} ppm`} alert={coOver} alertLabel={`> ${data.meta.co_alert_ppm} ppm`} />

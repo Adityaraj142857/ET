@@ -22,5 +22,8 @@ frontend/public/data/*.json
 # RAG pipeline index (regenerate with `uv run python -m rag_pipeline.build_index`)
 rag_pipeline/index/
 
+# restart.sh RAG backend log
+logs/
+
 # OS cruft
 # .DS_Store
